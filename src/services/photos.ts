@@ -7,12 +7,13 @@ axios.defaults.headers.common["Authorization"] = MY_KEY;
 axios.defaults.params = {
   orientation: "landscape",
 };
+
 interface ResponseAPI {
   photos: Photo[];
 }
 
 export const getPhotos = async (query: string) => {
-  const response = await axios.get(`search?query=${query}`);
+  const response = await axios.get<ResponseAPI>(`search?query=${query}`);
 
   return response.data.photos;
 };
